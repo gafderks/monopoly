@@ -1,0 +1,98 @@
+body {
+  background: #dddddd;
+  color: black;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-bottom: 240px;
+  }
+}
+
+h1 {
+  font-size: 60px;
+}
+
+/*h2, h3 {*/
+/*font-family: 'Return-To-Sender',apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;*/
+/*}*/
+
+.compass {
+  width: 300px;
+  margin: 20% auto;
+}
+
+.compass img {
+  width: 100%;
+}
+
+.compass h3 {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.monopoly-card {
+  width: 300px;
+  border: 3px black solid;
+  margin: 20% auto;
+  background: white;
+}
+
+.monopoly-card > div {
+  margin: 10px;
+}
+
+.monopoly-card .m-name {
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 24px;
+  border: 3px solid black;
+  font-weight: bold;
+}
+
+.monopoly-card .price {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  border: 3px solid black;
+  font-size: 20px;
+}
+
+.monopoly-card img {
+  width: 100%;
+}
+
+.monopoly-card .ownership {
+  text-align: center;
+  margin: 5px auto;
+}
+
+.destination-container {
+  padding: 10px;
+  margin-top: 30px;
+}
+
+.destination-container li {
+  text-shadow: 0px 1px #555;
+}
+
+.buy-button {
+  border: 2px #000 solid;
+  background: #9bf94d;
+}
+
+.buy-button[disabled] {
+  background: #ff6c64;
+}
+
+.balance {
+  margin-top: calc(50vh - 100pt);
+  font-size: 100pt;
+  text-align: center;
+}
