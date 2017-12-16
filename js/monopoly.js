@@ -39,7 +39,7 @@ function bindNavigationButtons() {
 function fetchAll(callback) {
   updateLocations(function() {
     updateBalance(function() {
-      updateScoreTable(null);
+      updateScoreTable(callback);
     })
   });
 }

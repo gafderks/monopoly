@@ -80,27 +80,27 @@ class Location
     }
     
     public function getName() {
-        return $this->name;
+        return utf8_encode($this->name);
     }
     
     public function getImage() {
-        return $this->image;
+        return utf8_encode($this->image);
     }
     
     public function getColor() {
-        return $this->color;
+        return utf8_encode($this->color);
     }
     
     public function getText() {
-        return $this->text;
+        return utf8_encode($this->text);
     }
     
     public function getLat() {
-        return $this->lat;
+        return utf8_encode($this->lat);
     }
     
     public function getLon() {
-        return $this->lon;
+        return utf8_encode($this->lon);
     }
     
     public function getPrice() {
@@ -123,15 +123,15 @@ class Location
     public function toJSON() {
         return [
             "id" => $this->id,
-            "name" => $this->name,
-            "image" => $this->image,
-            "color" => $this->color,
-            "text" => $this->text,
+            "name" => $this->getName(),
+            "image" => $this->getImage(),
+            "color" => $this->getColor(),
+            "text" => $this->getText(),
             "price" => (double) $this->price,
             "rent" => (double) $this->rent,
             "location" => [
-                "lat" => (double) $this->lat,
-                "lon" => (double) $this->lon
+                "lat" => (double) $this->getLat(),
+                "lon" => (double) $this->getLon()
             ],
             "owner" => $this->getActiveOwnershipTeamName()
         ];
