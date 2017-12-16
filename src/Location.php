@@ -61,13 +61,13 @@ class Location
     
     /**
      * @var double
-     * @Column(type="decimal")
+     * @Column(type="string")
      */
     private $lat;
     
     /**
      * @var double
-     * @Column(type="decimal")
+     * @Column(type="string")
      */
     private $lon;
     
@@ -104,7 +104,7 @@ class Location
     }
     
     public function getPrice() {
-        return $this->price;
+        return (double) $this->price;
     }
     
     public function getRent() {
