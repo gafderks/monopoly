@@ -5,7 +5,7 @@ function init() {
   console.log("initialized");
   setInterval(function(){
     updateAll(null);
-  }, 10000);
+  }, 5000);
   setInterval(function(){
     locate();
   }, 2000);
@@ -19,9 +19,8 @@ function logIn(callback) {
     $.ajax({
       type: "POST",
       url: "api.php?action=create&resource=team",
-      data: {'name': name},
-      success: callback
-    });
+      data: {'name': name}
+    }).done(function(callback) { updateAll(callback); });
     localStorage.setItem("user", name);
   }
 }
@@ -153,11 +152,7 @@ function buyProperty(locationId, callback) {
     type: "POST",
     url: "api.php?action=create&resource=ownership",
     data: {'location': locationId, 'name': localStorage.getItem('user')},
-
-    success: function() {
-      updateAll(callback);
-    }
-  });
+  }).done(function(callback) { updateAll(callback); });
 }
 
 function payRent(teamName, amount, callback) {
@@ -169,22 +164,16 @@ function payRent(teamName, amount, callback) {
       'from': localStorage.getItem('user'),
       'to': teamName,
       'amount': amount
-    },
-    success: function() {
-      updateAll(callback);
     }
-  });
+  }).done(function(callback) { updateAll(callback); });
 }
 
 function getBonus(callback) {
   $.ajax({
     type: "POST",
     url: "api.php?action=create&resource=transaction",
-    data: {'type': 'bonus', 'name': localStorage.getItem('user')},
-    success: function() {
-      updateAll(callback);
-    }
-  });
+    data: {'type': 'bonus', 'name': localStorage.getItem('user')}
+  }).done(function(callback) { updateAll(callback); });
 }
 
 function openCard(card, newlyVisited) {
