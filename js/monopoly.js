@@ -5,10 +5,10 @@ function init() {
   console.log("initialized");
   setInterval(function(){
     updateAll(null);
+  }, 10000);
+  setInterval(function(){
+    locate();
   }, 2000);
-  //setInterval(function(){
-  //  locate();
-  //}, 2000);
 }
 
 function logIn(callback) {
