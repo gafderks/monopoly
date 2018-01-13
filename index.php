@@ -102,6 +102,7 @@ include_once('controller.php');
       <th>Team</th>
       <th>Bezittingen</th>
       <th>Geld</th>
+      <th>Waarde bezittingen</th>
     </tr>
     </thead>
     <tbody id="score-table">

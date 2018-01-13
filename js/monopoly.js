@@ -111,7 +111,7 @@ function updateScoreTable(callback) {
     $("#score-table").html("");
     for (var i = 0; i < data.length; i++) {
       $("#score-table").append(
-        "<tr><td>"+data[i].name+"</td><td>"+data[i].ownerships+"</td><td>&euro; "+data[i].balance+"</td></tr>"
+        "<tr><td>"+data[i].name+"</td><td>"+data[i].ownerships+"</td><td>&euro; "+data[i].balance+"</td><td>&euro; "+data[i].estate+"</td></tr>"
       );
     }
     if (typeof callback ==='function') {

@@ -65,9 +65,11 @@ class Team
     
     public function getScore() {
         $numOwnerships = 0;
+        $estate = 0;
         foreach($this->ownerships as $ownership) {
             if ($ownership->isActive()) {
                 $numOwnerships++;
+                $estate += $ownership->getLocation()->getPrice();
             }
         }
         
@@ -79,7 +81,8 @@ class Team
         return [
             "name" => $this->getTeamName(),
             "ownerships" => $numOwnerships,
-            "balance" => $balance
+            "balance" => $balance,
+            "estate" => $estate,
         ];
     }
     
