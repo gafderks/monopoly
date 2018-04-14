@@ -1,13 +1,19 @@
+var transactionInProgress = false;
+
 function init() {
   bindNavigationButtons();
   logIn();
   updateAll(null);
   console.log("initialized");
   setInterval(function(){
-    updateAll(null);
+    if (!transactionInProgress) {
+      updateAll(null);
+    }
   }, 5000);
   setInterval(function(){
-    locate();
+    if (!transactionInProgress) {
+      locate();
+    }
   }, 2000);
 }
 
@@ -15,7 +21,10 @@ function logIn(callback) {
   if (localStorage.getItem("user") == null) {
     localStorage.setItem("visited", JSON.stringify([]));
     localStorage.setItem("transactions", JSON.stringify([]));
-    var name = prompt("Vul je teamnaam in");
+    var name = "";
+    while (name.trim() === "" || name === null) {
+      name = prompt("Vul je teamnaam in");
+    }
     $.ajax({
       type: "POST",
       url: "api.php?action=create&resource=team",
@@ -147,12 +156,12 @@ function checkIfNearLocation(location) {
   }
 }
 
-function buyProperty(locationId, callback) {
+function buyProperty(locationId) {
   $.ajax({
     type: "POST",
     url: "api.php?action=create&resource=ownership",
     data: {'location': locationId, 'name': localStorage.getItem('user')},
-  }).done(function(callback) { updateAll(callback); });
+  }).done(updateAll(finishTransaction()));
 }
 
 function payRent(teamName, amount, callback) {
@@ -198,7 +207,7 @@ function openCard(card, newlyVisited) {
       $("#buy-button").unbind();
       $("#buy-button").click(function() {
         $("#buy-button").prop("disabled", true);
-        buyProperty(card.id, null);
+        buyProperty(card.id);
       });
     }
   } else {
@@ -226,4 +235,12 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 
 function deg2rad(deg) {
   return deg * (Math.PI/180)
+}
+
+function startTransaction() {
+  transactionInProgress = true;
+}
+
+function finishTransaction() {
+  transactionInProgress = false;
 }
