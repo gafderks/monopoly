@@ -14,27 +14,11 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $i
 
 // database configuration parameters
 $conn = [
-    //'driver' => 'pdo_sqlite',
-    //'path' => __DIR__ . '/db.sqlite',
-    'url' => getenv('DATABASE_URL')
+    'driver' => 'pdo_sqlite',
+    'path' => __DIR__ . '/db.sqlite',
+//    'url' => getenv('DATABASE_URL')
 ];
 
 // obtaining the entity manager
 global $entityManager;
 $entityManager = EntityManager::create($conn, $config);
-
-// setup email
-$mail = new \PHPMailer\PHPMailer\PHPMailer(true);
-try {
-    $mail->isSMTP(); // Use SMTP
-    $mail->Host        = 'smtp.gmail.com'; // Sets SMTP server
-    $mail->SMTPAuth    = true; // enable SMTP authentication
-    $mail->SMTPSecure  = "tls"; //Secure conection
-    $mail->Port        = 587; // set the SMTP port
-    $mail->Username    = 'pm.pivo.sld@gmail.com'; // SMTP account username
-    $mail->Password    = getenv('SMTP_PASS'); // SMTP account password
-    $mail->setFrom('pm.pivo.sld@gmail.com', 'Pivo\'s');
-    $mail->addReplyTo('pivos@descouting.nl', 'Pivo\'s');
-} catch (Exception $e) {
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-}
