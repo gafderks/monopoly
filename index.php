@@ -52,9 +52,9 @@ include_once('controller.php');
       <li class="nav-item">
         <a class="nav-link" data-page="page-ownership" href="#">Scores</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="javascript:localStorage.clear();location.reload();">Uitloggen</a>
-      </li>
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="javascript:localStorage.clear();location.reload();">Uitloggen</a>-->
+<!--      </li>-->
     </ul>
   </div>
 </nav>
