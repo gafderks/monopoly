@@ -96,3 +96,7 @@ h1 {
   font-size: 100pt;
   text-align: center;
 }
+
+#map {
+  height: 100%;
+}
