@@ -44,6 +44,9 @@ include_once('controller.php');
             (current)</span></a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-page="page-map" href="#">Kaart</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-page="page-currency" href="#">Geld</a>
       </li>
       <li class="nav-item">
@@ -95,6 +98,10 @@ include_once('controller.php');
 
 </div>
 
+<div id="page-map" class="page d-none" style="height: calc(100% - 56px)">
+  <div id="map"></div>
+</div>
+
 <div id="page-ownership" class="page container d-none">
   <table class="table table-responsive">
     <thead>
@@ -129,6 +136,10 @@ include_once('controller.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <script src="js/monopoly.js" type="application/javascript"></script>
+<script src="js/fontawesome-markers.min.js"
+        type="application/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWJoXjdl58XEV9DTYU54ykt3ZP0kYPtgY&callback=initMap"
+        async defer></script>
 
 <script type="application/javascript">
   locations = [];

@@ -1,4 +1,58 @@
 var transactionInProgress = false;
+var map;
+var selfMarker;
+
+function initMap() {
+  // Gets called from maps js
+  updateLocations(function() {
+    console.log(locations);
+    // Init the map
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: locations[0].location.lat, lng: locations[0].location.lon},
+      zoom: 15,
+      clickableIcons: false,
+      streetViewControl: false,
+      fullscreenControl: false,
+    });
+
+    // Place the markers
+    for (var i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: {lat: locations[i].location.lat, lng: locations[i].location.lon},
+        map: map,
+        icon: {
+          path: fontawesome.markers.HOME,
+          scale: 0.5,
+          strokeWeight: 0.2,
+          strokeColor: 'black',
+          strokeOpacity: 1,
+          fillColor: locations[i].color,
+          fillOpacity: 0.7,
+          //labelOrigin: google.maps.Point(-3, -12)
+        },
+        //label: locations[i].name
+      });
+    }
+
+    selfMarker = new google.maps.Marker({
+      position: {lat: locations[0].location.lat, lng: locations[0].location.lon},
+      map: map,
+      icon: {
+        path: fontawesome.markers.CIRCLE,
+        scale: 0.3,
+        strokeWeight: 0,
+        strokeColor: 'black',
+        strokeOpacity: 0,
+        fillColor: "#006eff",
+        fillOpacity: 1,
+        //labelOrigin: google.maps.Point(-3, -12)
+      },
+      //label: locations[i].name
+    });
+
+  });
+
+}
 
 function init() {
   bindNavigationButtons();
@@ -130,6 +184,7 @@ function updateScoreTable(callback) {
 }
 
 function checkIfNearLocation(location) {
+  selfMarker.setPosition({lat: location.coords.latitude, lng: location.coords.longitude});
   for (var i = 0; i < locations.length; i++) {
     var distance = getDistanceFromLatLonInKm(
       location.coords.latitude,
