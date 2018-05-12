@@ -99,9 +99,11 @@ function bindNavigationButtons() {
 }
 
 function fetchAll(callback) {
-  updateLocations(function() {
-    updateBalance(function() {
-      updateScoreTable(callback);
+  updateNotifications(function() {
+    updateLocations(function() {
+      updateBalance(function() {
+        updateScoreTable(callback);
+      })
     })
   });
 }
@@ -128,6 +130,24 @@ function updateLocations(callback) {
       callback();
     }
   });
+}
+
+function updateNotifications(callback) {
+  $.get( "api.php?action=list&resource=notifications&rand="+Math.random(), function(
+    data ) {
+    notifications = data;
+    displayNotifications(notifications);
+    if (typeof callback ==='function') {
+      callback();
+    }
+  });
+}
+
+function displayNotifications(notifications) {
+  showAlert(null);
+  for (var i = 0; i < notifications.length; i++) {
+    showAlert(notifications[i]);
+  }
 }
 
 function updateDestinations() {
@@ -286,6 +306,15 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   var d = R * c; // Distance in km
   return d;
+}
+
+function showAlert(alrt) {
+  if (alrt === null) {
+    $("#alerts").empty();
+  } else {
+    $("#alerts").append("<div class='alert alert-"+alrt.type+"' role='alert'>"
+                        + alrt.text + "</div>")
+  }
 }
 
 function deg2rad(deg) {

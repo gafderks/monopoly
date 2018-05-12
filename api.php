@@ -54,6 +54,14 @@ switch ($_GET['action']) {
                 }
                 print json_encode($result);
                 break;
+            case "notifications":
+                $notifications = getNotifications();
+                $result = [];
+                foreach ($notifications as $notification) {
+                    array_push($result, $notification->toJSON());
+                }
+                print json_encode($result);
+                break;
             default:
                 print "Unsupported resource";
         }

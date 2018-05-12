@@ -114,3 +114,8 @@ function getTeamByName($name) {
     return $entityManager->getRepository('Team')->findOneBy(['teamName' =>
                                                                  $name]);
 }
+
+function getNotifications() {
+    global $entityManager;
+    return $entityManager->getRepository('Notification')->findAll();
+}

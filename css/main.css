@@ -100,3 +100,7 @@ h1 {
 #map {
   height: 100%;
 }
+
+#alerts .alert {
+  margin-bottom: 0;
+}
