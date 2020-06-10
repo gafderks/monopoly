@@ -81,7 +81,7 @@ function getTeams() {
  */
 function getLocations() {
     global $entityManager;
-    return $entityManager->getRepository('Location')->findAll();
+    return $entityManager->getRepository('Location')->findBy(['enabled' => true]);
 }
 
 /**

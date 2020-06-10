@@ -70,6 +70,12 @@ class Location
      * @Column(type="string")
      */
     private $lon;
+
+    /**
+     * @var boolean
+     * @Column(type="boolean")
+     */
+    private $enabled = true;
     
     public function getId() {
         return $this->id;
